@@ -1,41 +1,53 @@
-Building a REST API with Golang using Gin and Gorm
-Это небольшой проект для обучения.
+# 📚 Go Bookstore API
 
-Статья по которой делался проект: 
-https://blog.logrocket.com/rest-api-golang-gin-gorm/
+🔧 Учебный проект — простое REST API на Go для управления книгами с использованием Gin и Gorm.  
 
-Golang+REST-API+GIN+Gorm+SQLite
+Проект разработан по статье: [Building a REST API with Golang using Gin and Gorm](https://blog.logrocket.com/rest-api-golang-gin-gorm/)
 
-Для проекта использовались пакеты 
-github.com/gin-gonic/gin 
-gorm.io/gorm
-gorm.io/driver/sqlite
+---
 
-Проект реализует CRUD взаимодействие с базой данных SQlite
+## 🧩 Стек технологий
 
-Прослушиваемые Endpoits с помощью фраемворка Gin:
-GET "/books" - получение всех книг из бд
-POST "/books" - создание новой книги
-GET "/books/:id"  - получение книги по id
-PATCH "/books/:id" - обновление книги по id
-DELETE "/books/:id" - удаление книги по id
+- **Язык:** Go
+- **Фреймворк:** [Gin](https://github.com/gin-gonic/gin)
+- **ORM:** [GORM](https://gorm.io/)
+- **База данных:** SQLite
 
-GET "/books" 
-получения списка всех книг из бд books.db
-формат ответа JSON
+---
+
+## 📁 Установка и запуск
+
+```bash
+go mod tidy
+go run main.go
+```
+📘 Эндпоинты API
+📖 Получить список книг
+GET /books
+Ответ:
+
+```json
 {
-  "data": []
+  "data": [
+    { "id": 1, "title": "Start with Why", "author": "Simon Sinek" }
+  ]
 }
+```
+➕ Создать книгу
+POST /books
+Тело запроса:
 
-
-POST "/books"
-создание новой книги в бд books.db
-формат запроса JSON
+```json
 {
   "title": "Start with Why",
   "author": "Simon Sinek"
 }
-формат ответа JSON
+```
+📘 Получить книгу по ID
+GET /books/:id
+Ответ:
+
+```json
 {
   "data": {
     "id": 1,
@@ -43,49 +55,38 @@ POST "/books"
     "author": "Simon Sinek"
   }
 }
+```
+✏️ Обновить книгу
+PATCH /books/:id
+Тело запроса (одно из):
 
+```json
+{ "title": "The Infinite Game" }
+{ "author": "Charls Edwin" }
+```
+❌ Удалить книгу
+DELETE /books/:id
+Ответ:
 
-GET "/books/:id"
-получения по id книги из бд books.db
-формат ответа JSON
-{
-  "data": {
-    "id": 1,
-    "title": "Start with Why",
-    "author": "Simon Sinek"
-  }
-}
+```json
+{ "data": true }
+```
+🧠 Чему научился
+* Создавать REST API на Go
 
+* Использовать маршруты и middleware в Gin
 
-PATCH "/books/:id"
-обновление по id книги в бд books.db
-формат запроса JSON
-{
-  "title": "The Infinite Game"
-}
-{
-  "author": "Charls Edwin"
-}
-формат ответа JSON
-{
-  "data": {
-    "id": 1,
-    "title": "The Infinite Game",
-    "author": "Simon Sinek"
-  }
-}
-{
-  "data": {
-    "id": 1,
-    "title": "The Infinite Game",
-    "author": "Charls Edwin"
-  }
-}
+* Работать с SQLite через GORM
 
+* Структурировать модель и обработчики
 
-DELETE "/books/:id"
-удаление по id книги в бд books.db
-формат ответа JSON
-{
-  "data": true
-}
+* Обрабатывать JSON-запросы и ответы
+
+📦 Зависимости
+```bash
+github.com/gin-gonic/gin  
+gorm.io/gorm  
+gorm.io/driver/sqlite
+```
+📜 Лицензия
+Проект учебный, предназначен для демонстрации базовых навыков разработки REST API на Go.
